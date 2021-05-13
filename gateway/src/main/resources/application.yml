@@ -1,0 +1,24 @@
+server:
+  port: 80
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: false # 是否将服务id转换为小写
+      routes:
+        - id: consumerloan
+            uri: http://localhost:8081/
+            predicates:
+              - Path=/gateway/consumerloan
+        - id: cashloan
+            uri: http://localhost:8082/
+            predicates:
+              - Path=/gateway/cashloan
+        - id: ç
+            uri: http://localhost:8083/
+            predicates:
+              - Path=/gateway/risk
